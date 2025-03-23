@@ -1,24 +1,68 @@
-# README
+# 📐 String Calculator - Rails App (TDD)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A simple Ruby on Rails application that implements the **String Calculator Kata** using **Test-Driven Development (TDD)**.  
+It supports both a **web UI** and **JSON API**, and gracefully handles inputs like custom delimiters and negative numbers.
 
-Things you may want to cover:
+---
 
-* Ruby version
+## 🚀 Features
 
-* System dependencies
+- Add comma-separated or newline-separated numbers
+- Supports custom single-character delimiters (e.g. `//;\n1;2`)
+- Handles form input from the browser (HTML view)
+- Handles API calls via JSON
+- Rejects negative numbers with meaningful error messages
+- Built with Minitest following TDD principles
 
-* Configuration
+---
 
-* Database creation
+## 🧪 Sample Inputs & Outputs
 
-* Database initialization
+| Input               | Output | Notes                           |
+|--------------------|--------|---------------------------------|
+| `""`               | `0`    | Empty string                    |
+| `"1"`              | `1`    | Single number                   |
+| `"1,2"`            | `3`    | Two numbers, comma-separated    |
+| `"1\n2,3"`         | `6`    | Newlines + commas               |
+| `"//;\n1;2"`       | `3`    | Custom delimiter `;`            |
+| `"1,-2,3"`         | Error  | Negative number not allowed     |
+| `"'1,2'"`          | `3`    | Quoted input — handled gracefully |
 
-* How to run the test suite
+---
 
-* Services (job queues, cache servers, search engines, etc.)
+## 🛠 Requirements
 
-* Deployment instructions
+- Ruby 3.x
+- Rails 7.x
+- Bundler
+- SQLite3 (default; MySQL/PostgreSQL optional)
 
-* ...
+---
+
+## ⚙️ Setup Instructions
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/yourusername/string_calculator_app.git
+cd string_calculator_app
+```
+### 2. Install Dependencies
+
+```bash
+bundle install
+```
+## 3. Set Up the Database
+```
+rails db:create
+rails db:migrate
+```
+
+## 4. Start the Rails Server
+```
+rails server
+```
+## Open the app in your browser:
+```
+http://localhost:3000
+```
