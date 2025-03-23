@@ -38,4 +38,12 @@ class StringCalculatorTest < ActiveSupport::TestCase
     e = assert_raises(RuntimeError) { StringCalculator.add("-1,-2") }
     assert_equal "negative numbers not allowed: -1, -2", e.message
   end
+
+  test "handles input wrapped in single quotes" do
+    assert_equal 3, StringCalculator.add("'1,2'")
+  end
+
+  test "handles input wrapped in double quotes" do
+    assert_equal 3, StringCalculator.add("\"1,2\"")
+  end
 end

@@ -58,4 +58,29 @@ class CalculatorsControllerTest < ActionDispatch::IntegrationTest
     json_response = JSON.parse(response.body)
     assert_equal expected_sum, json_response["result"]
   end
+
+  test "GET /add returns correct sum for normal input" do
+    get add_url, params: { numbers: "1,2,3" }
+    json = JSON.parse(response.body)
+    assert_equal 6, json["result"]
+  end
+
+  test "GET /add returns correct sum for single-quoted input" do
+    get add_url, params: { numbers: "'1,2'" }
+    json = JSON.parse(response.body)
+    assert_equal 3, json["result"]
+  end
+
+  test "GET /add returns correct sum for double-quoted input" do
+    get add_url, params: { numbers: "\"1,2\"" }
+    json = JSON.parse(response.body)
+    assert_equal 3, json["result"]
+  end
+
+  test "GET /add raises error for negative numbers" do
+    get add_url, params: { numbers: "1,-2" }
+    json = JSON.parse(response.body)
+    assert_response :unprocessable_entity
+    assert_match /negative numbers not allowed/, json["error"]
+  end
 end
