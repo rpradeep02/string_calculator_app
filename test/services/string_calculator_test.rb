@@ -1,4 +1,3 @@
-ENV['RAILS_ENV'] ||= 'development'
 require 'test_helper'
 
 class StringCalculatorTest < ActiveSupport::TestCase
