@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class StringCalculatorTest < ActiveSupport::TestCase
   test "returns 0 for an empty string" do
