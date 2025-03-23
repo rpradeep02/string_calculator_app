@@ -66,3 +66,40 @@ rails server
 ```
 http://localhost:3000
 ```
+
+## 🖥 Using the App (Web UI)
+
+1. Enter numbers like 1,2, 1\n2,3, or //;\n1;2
+2. Click "Calculate"
+3. Results or error messages will appear below the form
+4. Quoted input like '1,2' or "1,2" is cleaned automatically
+
+## 📡 API Usage (JSON)
+### ➕ Add Numbers
+### GET request:
+```
+/add?numbers=1,2,3
+```
+### Response:
+```
+{ "result": 6 }
+```
+## 🚫 Negative Number Error
+### GET request:
+```
+/add?numbers=1,-2
+```
+### Response:
+```
+{ "error": "negative numbers not allowed: -2" }
+```
+## 🧪 Running Tests
+### Run all tests:
+```
+rails test
+```
+## Run service or controller tests individually:
+```
+rails test test/services/string_calculator_test.rb
+rails test test/controllers/calculators_controller_test.rb
+```
