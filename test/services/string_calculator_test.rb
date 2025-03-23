@@ -25,8 +25,17 @@ class StringCalculatorTest < ActiveSupport::TestCase
     assert_equal 3, StringCalculator.add("//;\n1;2")
   end
 
-  test "raises an exception when negative numbers are present" do
-    error = assert_raises(RuntimeError) { StringCalculator.add("1,-2,3,-4") }
-    assert_equal "negative numbers not allowed: -2, -4", error.message
+  test "custom delimiter -" do
+    assert_equal 7, StringCalculator.add("//-\n4-2-1")
+  end
+
+  test "raises error for negative number" do
+    e = assert_raises(RuntimeError) { StringCalculator.add("1,-2,3") }
+    assert_match /negative numbers not allowed: -2/, e.message
+  end
+
+  test "raises error for multiple negative numbers" do
+    e = assert_raises(RuntimeError) { StringCalculator.add("-1,-2") }
+    assert_equal "negative numbers not allowed: -1, -2", e.message
   end
 end

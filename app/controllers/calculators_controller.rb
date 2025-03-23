@@ -1,4 +1,18 @@
 class CalculatorsController < ApplicationController
+  def index
+  end
+
+  def calculate
+    @numbers = params[:numbers] || ""
+    begin
+      @result = StringCalculator.add(@numbers)
+    rescue => e
+      @error = e.message
+    end
+    render :index
+  end
+
+
   def add
     numbers = params[:numbers] || ""
     result = StringCalculator.add(numbers)

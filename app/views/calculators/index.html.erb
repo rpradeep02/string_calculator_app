@@ -1,0 +1,16 @@
+<h1>String Calculator</h1>
+
+<%= form_with url: calculate_path, method: :post, local: true, data: { turbo: false } do |form| %>
+  <div>
+    <%= form.label :numbers, "Enter numbers (comma, newline, or custom delimiter):" %><br>
+    <%= form.text_field :numbers, value: @numbers, class: "form-control" %>
+  </div>
+  <br>
+  <%= form.submit "Calculate", class: "btn btn-primary" %>
+<% end %>
+
+<% if @result %>
+  <h2>Result: <%= @result %></h2>
+<% elsif @error %>
+  <h2 style="color: red;">Error: <%= @error %></h2>
+<% end %>
